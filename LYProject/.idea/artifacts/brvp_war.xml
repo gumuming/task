@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="brvp:war">
+    <output-path>$PROJECT_DIR$/../../others/Music-mmall-in-Mini-Program-master/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>brvp</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="brvp.war">
+      <element id="artifact" artifact-name="brvp:war exploded" />
+    </root>
+  </artifact>
+</component>

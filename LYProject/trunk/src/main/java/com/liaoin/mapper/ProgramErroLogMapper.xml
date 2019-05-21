@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liaoin.dao.ProgramErroLogMapper">
+  <resultMap id="BaseResultMap" type="com.liaoin.entity.ProgramErroLog">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="erroCode" jdbcType="VARCHAR" property="errocode" />
+    <result column="deviceId" jdbcType="VARCHAR" property="deviceid" />
+    <result column="createDate" jdbcType="TIMESTAMP" property="createdate" />
+    <result column="erroMsg" jdbcType="LONGVARCHAR" property="erromsg" />
+    <result column="erroDesc" jdbcType="LONGVARCHAR" property="errodesc" />
+    <result column="requestParm" jdbcType="LONGVARCHAR" property="requestparm" />
+    <result column="requestUser" jdbcType="LONGVARCHAR" property="requestuser" />
+  </resultMap>
+</mapper>
