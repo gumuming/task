@@ -24,9 +24,9 @@ spring:
     host: 127.0.0.1
     port: 6379
   datasource:
-    url: jdbc:mysql://carstop1.cwv8kaufdyyl.rds.cn-north-1.amazonaws.com.cn:3306/mytest?useUnicode=true&characterEncoding=UTF-8&useSSL=false&useAffectedRows=true&autoReconnect=true&useSSL=false&useAffectedRows=true&autoReconnect=true
+    url: 
     username: root
-    password: ly13s5d7o9%!38sjf#ds
+    password:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     maxActive: 20
