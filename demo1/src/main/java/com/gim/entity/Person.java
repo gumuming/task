@@ -1,4 +1,4 @@
-package com.liaoin.entity;
+package com.gim.entity;
 
 import lombok.Data;
 

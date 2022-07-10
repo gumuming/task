@@ -1,4 +1,4 @@
-package com.liaoin;
+package com.gim;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

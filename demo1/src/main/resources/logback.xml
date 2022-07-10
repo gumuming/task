@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration debug="false" scan="true"
+	scanPeriod="30 second">
+	<statusListener
+		class="ch.qos.logback.core.status.NopStatusListener" />
+
+	<property name="ROOT" value="/data/zhibo/weblog/zbydy/" />
+	<property name="FILESIZE" value="20MB" />
+	<property name="MAXHISTORY" value="100" />
+
+	<!-- 控制台打印 -->
+	<appender name="STDOUT"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{50} - %m%n
+			</pattern>
+		</encoder>
+
+
+	</appender>
+	<!-- 所有 输入到文件，按日期和文件大小 -->
+	<appender name="All-OUT"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{36} - %m%n
+			</pattern>
+		</encoder>
+
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${ROOT}%d/all.%i.log</fileNamePattern>
+			<maxHistory>${MAXHISTORY}</maxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>${FILESIZE}</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!-- Logger 根目录 -->
+	<logger name="org.hibernate.id.enhanced" level="WARN" additivity="false" />
+
+	<logger name="o.s.c.s" level="WARN" additivity="false" />
+	<logger name="s.d.s.w.r" level="WARN" additivity="false" />
+<!-- 打印SQL日志
+	<logger name="org.springframework.jdbc.core" level="debug"/>
+	<logger name="org.springframework.jdbc.core.StatementCreatorUtils" level="trace"/>
+ -->
+    <logger name="org.hibernate.SQL" level="DEBUG"/>
+    <logger name="org.hibernate.engine.QueryParameters" level="DEBUG"/>
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" level="DEBUG"/>
+    <logger name="org.hibernate.type.descriptor.sql.BasicBinder" level="TRACE"/>
+    <logger  name="org.hibernate.type.descriptor.sql.BasicExtractor" level="TRACE"/>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="All-OUT" />
+	</root>
+</configuration>

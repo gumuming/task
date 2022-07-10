@@ -1,3 +1,101 @@
+#Http
 server:
-    port: 8080
-    context-path: /springboot
+  port: 7080
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    encoding:
+      force: true
+      charset: UTF-8
+      enabled: true
+#IM
+imsocket.port: 1505
+productType: all
+isDebug: 0
+projectNameCode:
+#profile
+spring:
+  profiles:
+    active: dev
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /static/**
+  datasource:
+    driver-class-name: net.sf.log4jdbc.DriverSpy
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      connection-timeout: 600000
+      connection-test-query: SELECT 1 FROM DUAL
+      maximum-pool-size: 20
+      max-lifetime: 1800000
+      minimum-idle: 5
+      validation-timeout: 30000
+      idle-timeout: 60000
+  jpa:
+    # Specify the DBMS
+    database: mysql
+    # Show or not log for each sql query
+    show-sql: true
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, update)
+      ddl-auto: update
+
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    properties:
+      hibernate.dialect: org.hibernate.dialect.MySQL57Dialect
+ #aop
+  aop:
+    auto: true
+  thymeleaf:
+    cache: false
+    mode: HTML
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+    serialization:
+      fail-on-empty-beans: false
+
+
+#日志
+logging:
+  level:
+    io.swagger.models.parameters.AbstractSerializableParameter: error
+#    # 关闭不需要的4种log4jdbc日志
+    jdbc.connection: off
+    jdbc.resultset: off
+    jdbc.audit: off
+    jdbc.sqlonly: off
+
+
+
+# token配置
+token:
+  # 令牌自定义标识
+  header: Authorization
+  # 令牌密钥
+  secret: abcdefghijklmnopqrstuvwxyz
+  # 令牌有效期（默认30分钟）
+  expireTime: 30
+
+
+
+# Swagger配置
+springfox:
+  documentation:
+    enabled: true
+swagger:
+  title: 直播项目接口列表
+  version: 1.0.0
+  base-package: com.trq
+  base-path: /**
+  global-operation-parameters:
+    - name: Authorization
+      parameterType: header
+  docket:
+    live-admin:
+      title: 管理后台
+      base-package: com.trq.controller

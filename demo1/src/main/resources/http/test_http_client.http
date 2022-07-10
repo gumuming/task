@@ -1,0 +1,38 @@
+### 获取验证码
+POST {{baseUrl}}/api/login/getVerCode?smsType=1&tel=13312341234
+Accept: */*
+Cache-Control: no-cache
+
+
+
+### 注册
+POST {{baseUrl}}/api/login/register?code=123456&mobile=13312341234&password=123456&source=ios
+
+Accept: */*
+Cache-Control: no-cache
+
+### 登陆
+POST {{baseUrl}}/api/login/login?appVersion=1.0.0&appVersionCode=1&mobile=13312341234&password=123456&phoneFirm=xiaomi&phoneModel=xiaomi&phoneSystem=andrioid&phoneUuid=23j
+Accept: */*
+Cache-Control: no-cache
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36
+
+###
+
+### test
+GET {{baseUrl}}/test/mysql/insert
+Accept: */*
+Cache-Control: no-cache
+
+
+
+### test
+GET {{baseUrl}}/jpa/deal
+Accept: */*
+Cache-Control: no-cache
+
+### userinfo
+
+GET {{baseUrl}}/jpa/userinfo
+
+###
