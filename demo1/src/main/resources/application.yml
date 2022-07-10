@@ -99,3 +99,11 @@ swagger:
     live-admin:
       title: 管理后台
       base-package: com.trq.controller
+
+
+tio:
+  websocket:
+    server:
+      ip: 127.0.0.1
+      port: 9326
+      heartbeat-timeout: 600000
