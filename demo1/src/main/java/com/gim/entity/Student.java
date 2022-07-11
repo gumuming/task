@@ -16,7 +16,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "t_student")
+    @Table(name = "t_student")
 @org.hibernate.annotations.Table(appliesTo = "t_student",comment = "学生")
 public class Student {
 

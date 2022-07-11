@@ -3,7 +3,9 @@ package com.gim.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Transient;
 import java.io.Serializable;
@@ -17,6 +19,8 @@ import java.util.List;
 @Data
 @JsonIgnoreProperties
 @ApiModel(value = "com.kalacheng.buscommon.model.ApiUserInfo", description = "APP登录接口返回值")
+@NoArgsConstructor
+@AllArgsConstructor
 public class ApiUserInfo extends UserBasicInfo implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -41,7 +45,7 @@ public class ApiUserInfo extends UserBasicInfo implements Serializable {
 
     @Transient
     @ApiModelProperty(value = "是否能开播 1:否 0:是")
-    public int isLive;
+    public Integer isLive;
 
 
 
@@ -51,11 +55,11 @@ public class ApiUserInfo extends UserBasicInfo implements Serializable {
 
     @Transient
     @ApiModelProperty(value = "是否第一次登录 1:是 2:不是")
-    public int isFirstLogin;
+    public Integer isFirstLogin;
 
     @Transient
     @ApiModelProperty(value = "是否弹出邀请码 1:弹出 2:不弹出")
-    public int isPid;
+    public Integer isPid;
 
     @Transient
     @ApiModelProperty(value = "总消费金币(展示) (男朋友中为钻石)")
@@ -67,40 +71,40 @@ public class ApiUserInfo extends UserBasicInfo implements Serializable {
 
     @Transient
     @ApiModelProperty(value = "谁看过我人数")
-    public int readMeUsersNumber;
+    public Integer readMeUsersNumber;
 
 
 
     @Transient
     @ApiModelProperty(value = "我关注的数量")
-    public int followNum;
+    public Integer followNum;
 
     @Transient
     @ApiModelProperty(value = "关注我的数量（粉丝数量）")
-    public int fansNum;
+    public Integer fansNum;
 
     @Transient
     @ApiModelProperty(value = "点赞数")
-    public int likeNum;
+    public Integer likeNum;
 
     @Transient
     @ApiModelProperty(value = "关注状态 0:未关注， 1：已关注")
-    public int followStatus;
+    public Integer followStatus;
 
 
 
     @Transient
     @ApiModelProperty(value = "打赏人数")
-    public int rewardNum;
+    public Integer rewardNum;
 
 
     @Transient
     @ApiModelProperty(value = "谁看过我是否需要贵族开关 0:需要 1:不需要", name = "isVipSee")
-    public int isVipSee;
+    public Integer isVipSee;
 
     @Transient
     @ApiModelProperty(value = "前端显示的状态字段：0:离线 1:忙碌 2:在线 3:通话中 4:看直播 5:匹配中 6:直播中 7:离开", name = "showStatus")
-    public int showStatus;
+    public Integer showStatus;
 
 
 
@@ -123,22 +127,22 @@ public class ApiUserInfo extends UserBasicInfo implements Serializable {
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "直播间礼物金额")
-    public double liveCoin;
+    public Double liveCoin;
 
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "总消费金币 (男朋友中为钻石)")
-    public double totalConsumeCoin;
+    public Double totalConsumeCoin;
 
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "总收益映票")
-    public double totalIncomeVotes;
+    public Double totalIncomeVotes;
 
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "贵族剩余天数")
-    public long nobleExpireDay;
+    public Long nobleExpireDay;
 
     @Transient
 //    @CacheFieldNotDBField
@@ -148,17 +152,17 @@ public class ApiUserInfo extends UserBasicInfo implements Serializable {
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "查看微信号所需金币 (男朋友中为钻石)")
-    public double wechatCoin;
+    public Double wechatCoin;
 
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "查看手机号所需金币 (男朋友中为钻石)")
-    public double mobileCoin;
+    public Double mobileCoin;
 
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "主播审核状态")
-    public int anchorAuditStatus;
+    public Integer anchorAuditStatus;
 
     @Transient
 //    @CacheFieldNotDBField
@@ -168,26 +172,26 @@ public class ApiUserInfo extends UserBasicInfo implements Serializable {
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "当前用户跟直播间的关系 1:当前直播间主播 2:管理员 3:普通用户", name = "relation")
-    public int relation;
+    public Integer relation;
 
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "对方用户跟直播间的关系 1:当前直播间主播 2:管理员 3:普通用户", name = "toRelation")
-    public int toRelation;
+    public Integer toRelation;
 
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "是否禁言 1:已禁言 0:未禁言", name = "isShutUp")
-    public int isShutUp;
+    public Integer isShutUp;
 
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "是否填写邀请码 1:不弹出 0:弹出", name = "isAlertCode")
-    public int isAlertCode;
+    public Integer isAlertCode;
 
     @Transient
 //    @CacheFieldNotDBField
     @ApiModelProperty(value = "用户对当前直播间总贡献值")
-    public double currContValue;
+    public Double currContValue;
 
 }

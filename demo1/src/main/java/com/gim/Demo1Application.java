@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.tio.websocket.starter.EnableTioWebSocketServer;
 
 
-//@EnableJpaRepositories(value = "com.gim", repositoryBaseClass = JpaRepositoryReBuild.class)
+@EnableJpaRepositories(value = "com.gim", repositoryBaseClass = JpaRepositoryReBuild.class)
 //@EnableDiscoveryClient // 即消费也注册
 @SpringBootApplication
 @EnableTioWebSocketServer

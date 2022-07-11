@@ -35,4 +35,10 @@ Cache-Control: no-cache
 
 GET {{baseUrl}}/jpa/userinfo
 
+### list
+
+POST {{baseUrl}}/jpa/list?pageNum=1&pageSize=2&className=first class
+
 ###
+
+
