@@ -10,4 +10,10 @@ spring:
     port: 6379
     host: 192.168.31.153
 #    password: 123456
+    jedis:
+      pool:
+        max-idle: 6
+        max-active: 32
+        max-wait: 100
+        min-idle: 4
 
