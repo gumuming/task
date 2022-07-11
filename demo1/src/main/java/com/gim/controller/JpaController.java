@@ -12,6 +12,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.tio.core.ChannelContext;
+import org.tio.core.Tio;
+import org.tio.core.TioConfig;
+import org.tio.core.intf.Packet;
+import org.tio.server.ServerTioConfig;
+import org.tio.utils.lock.SetWithLock;
+import org.tio.websocket.common.WsResponse;
+import org.tio.websocket.server.WsServerStarter;
 
 import javax.annotation.Resource;
 import javax.persistence.criteria.Predicate;
@@ -32,6 +40,7 @@ public class JpaController {
 
     @Resource
     private DemoDao demoDao;
+
 
     @GetMapping("/deal")
     public String dealJpa(){
@@ -78,6 +87,22 @@ public class JpaController {
         }, pageable);
         final List<Student> content = bookPage1.getContent();
         content.forEach(System.out::println);
+
+    }
+
+
+
+    @PostMapping("/socket")
+    public String dealSocket(String token){
+        final SetWithLock<ChannelContext> byToken = Tio.getByToken(TrqTioConfig.serverTioConfig, token);
+        final Student build = Student.builder()
+                .className("first class")
+                .name("type")
+                .sex(1)
+                .level(1)
+                .build();
+        final Boolean hello = Tio.sendToToken(TrqTioConfig.serverTioConfig, token, WsResponse.fromText(build.toString(), "utf-8"));
+        return "success";
 
     }
 

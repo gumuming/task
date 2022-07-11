@@ -41,4 +41,8 @@ POST {{baseUrl}}/jpa/list?pageNum=1&pageSize=2&className=first class
 
 ###
 
+POST {{baseUrl}}/jpa/socket?token=123456
+
+###
+
 

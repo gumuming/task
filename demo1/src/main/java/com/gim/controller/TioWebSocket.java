@@ -3,6 +3,7 @@ package com.gim.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.tio.common.starter.annotation.TioServerMsgHandler;
 import org.tio.core.ChannelContext;
 import org.tio.core.Tio;
@@ -41,6 +42,11 @@ public class TioWebSocket implements IWsMsgHandler {
     public void onAfterHandshaked(HttpRequest httpRequest, HttpResponse httpResponse, ChannelContext channelContext) throws Exception {
         Message message = new Message();
         String userId = httpRequest.getParam("userId");
+        String token = httpRequest.getParam("token");
+        if(StringUtils.isEmpty(token)){
+            return;
+        }
+        bindToken(channelContext,token);
         if (userSocketMap.get(userId) == null) {
             userSocketMap.put(userId, channelContext);
             Tio.bindUser(channelContext, userId);
@@ -66,6 +72,17 @@ public class TioWebSocket implements IWsMsgHandler {
             Tio.send(channelContext, wsResponse);
         }
     }
+
+    /**
+     * 绑定token
+     * @param channelContext
+     * @param token
+     * @author tanyaowu
+     */
+    public static void bindToken(ChannelContext channelContext, String token) {
+        channelContext.tioConfig.tokens.bind(token, channelContext);
+    }
+
 
     @Override
     public Object onBytes(WsRequest wsRequest, byte[] bytes, ChannelContext channelContext) throws Exception {
