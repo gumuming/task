@@ -63,7 +63,7 @@ public class RedisAutoConfig {
 
         @Bean
         public Jedis jedis(){
-            return new Jedis();
+            return new Jedis(host,port);
         }
     }
 }
