@@ -1,6 +1,7 @@
 package com.gim.controller;
 
 import net.coobird.thumbnailator.Thumbnails;
+import org.springframework.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,12 +12,8 @@ import java.io.IOException;
  */
 public class PersonController {
     public static void main(String[] args) throws IOException {
-        String absolutePath = new File("").getAbsolutePath();
-        System.out.println(absolutePath);
-
-        Thumbnails.of(new File(absolutePath+"\\img\\test.jpg"))
-                .scale(0.3d)
-                .toFile(absolutePath + "\\img\\climb-up.size.400X300.jpeg");
+        String str =  "name";
+        System.out.println(StringUtils.hasText(str));
 
     }
 }

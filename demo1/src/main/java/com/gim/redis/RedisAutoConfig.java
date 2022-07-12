@@ -8,16 +8,17 @@ import org.springframework.data.redis.connection.RedisPassword;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
 @Configuration
 public class RedisAutoConfig {
 
     @Bean
-    public RedisConnectionFactory redisConnectionFactory(JedisPoolConfig jedisPool,
-                                                         RedisStandaloneConfiguration jedisConfig) {
-        JedisConnectionFactory connectionFactory = new JedisConnectionFactory(jedisConfig);
-        connectionFactory.setPoolConfig(jedisPool);
+    public RedisConnectionFactory redisConnectionFactory(JedisPoolConfig jedisPoolConfig,
+                                                         RedisStandaloneConfiguration redisStandaloneConfiguration) {
+        JedisConnectionFactory connectionFactory = new JedisConnectionFactory(redisStandaloneConfiguration);
+        connectionFactory.setPoolConfig(jedisPoolConfig);
         return connectionFactory;
     }
 
@@ -42,7 +43,7 @@ public class RedisAutoConfig {
         private Integer minIdle;
 
         @Bean
-        public JedisPoolConfig jedisPool() {
+        public JedisPoolConfig jedisPoolConfig() {
             JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
             jedisPoolConfig.setMaxIdle(maxIdle);
             jedisPoolConfig.setMaxWaitMillis(maxWait);
@@ -52,7 +53,7 @@ public class RedisAutoConfig {
         }
 
         @Bean
-        public RedisStandaloneConfiguration jedisConfig() {
+        public RedisStandaloneConfiguration redisStandaloneConfiguration() {
             RedisStandaloneConfiguration config = new RedisStandaloneConfiguration();
             config.setHostName(host);
             config.setPort(port);
@@ -62,8 +63,12 @@ public class RedisAutoConfig {
         }
 
         @Bean
-        public Jedis jedis(){
-            return new Jedis(host,port);
+        public JedisPool JedisPoolFactory() {
+
+            JedisPool jp = new JedisPool(jedisPoolConfig(), host, port,
+                    (int) (maxWait*1000), password, database);
+            return jp;
         }
+
     }
 }

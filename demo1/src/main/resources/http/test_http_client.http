@@ -44,7 +44,7 @@ POST {{baseUrl}}/jpa/list?pageNum=1&pageSize=2&className=first class
 POST {{baseUrl}}/jpa/socket?token=123456
 
 ###
-GET {{baseUrl}}/api/produce?key=123
+GET {{baseUrl}}/api/produce?key=name
 
 ###
 GET {{baseUrl}}/api/consume

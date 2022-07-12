@@ -10,8 +10,10 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -29,7 +31,7 @@ public class MQServiceImpl implements MQService {
     private RedisTemplate redisTemplate;
 
     @Resource
-    private Jedis jedis;
+    private JedisPool jedisPool;
 
     @Override
     public void produce(String string) {
@@ -46,7 +48,7 @@ public class MQServiceImpl implements MQService {
 
     @Override
     public void blockingConsume() {
-
+        final Jedis jedis = jedisPool.getResource();
         final List<String> blpop = jedis.blpop(10, MESSAGE_KEY);
 
 //        List<Object> obj = redisTemplate.executePipelined(new RedisCallback<Object>() {
@@ -57,11 +59,12 @@ public class MQServiceImpl implements MQService {
 //                return connection.bLPop(10, MESSAGE_KEY.getBytes());
 //            }
 //        }, new StringRedisSerializer());
-
-        for (String str : blpop) {
-            if (!StringUtils.isEmpty(str)) {
-                log.info("blockingConsume : {}", str);
-            }
+        if(!CollectionUtils.isEmpty(blpop)){
+            blpop.forEach(str -> {
+                if (!StringUtils.isEmpty(str)) {
+                    log.info("blockingConsume : {}", str);
+                }
+            });
         }
     }
 

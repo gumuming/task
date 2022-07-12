@@ -20,12 +20,9 @@ import java.io.IOException;
 public class Demo1Application {
 
 
+    public static void main(String[] args) {
 
-    public static void main(String[] args) throws IOException {
-
-        final ConfigurableApplicationContext run = SpringApplication.run(Demo1Application.class, args);
-        final TrqTioConfig trqTioConfig =(TrqTioConfig) run.getBean("trqTioConfig");
-        trqTioConfig.start();
+        SpringApplication.run(Demo1Application.class, args);
 
     }
 
