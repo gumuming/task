@@ -53,4 +53,7 @@ GET {{baseUrl}}/api/consume
 GET {{baseUrl}}/api/bconsume
 
 ###
+GET {{baseUrl}}/sql/guard
+
+###
 

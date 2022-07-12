@@ -107,3 +107,7 @@ tio:
       ip: 127.0.0.1
       port: 9326
       heartbeat-timeout: 600000
+
+
+rtm:
+  appId: a09810b2a18744658425e365fdba8d0c
