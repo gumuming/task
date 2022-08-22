@@ -1,8 +1,11 @@
 package com.gim.java.base;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -15,15 +18,29 @@ import java.util.stream.Stream;
  */
 public class DateHelper {
 
+    @Data
+    @Builder
+    @NoArgsConstructor
+    @AllArgsConstructor
+    static class DateMini{
+        private Long hour;
+
+        private Long mints;
+
+        private Long secs;
+
+
+    }
+
     /**
      * 计算两个时间差
      */
-    public static String getDatePoor(Date endDate, Date nowDate)
+    public static DateMini getDatePoorDate(Date endDate, Date nowDate)
     {
         long nd = 1000 * 24 * 60 * 60;
         long nh = 1000 * 60 * 60;
         long nm = 1000 * 60;
-        // long ns = 1000;
+        long ns = 1000;
         // 获得两个时间的毫秒时间差异
         long diff = endDate.getTime() - nowDate.getTime();
         // 计算差多少天
@@ -33,9 +50,50 @@ public class DateHelper {
         // 计算差多少分钟
         long min = diff % nd % nh / nm;
         // 计算差多少秒//输出结果
-        // long sec = diff % nd % nh % nm / ns;
+        long sec = diff % nd % nh % nm / ns;
+        return DateMini.builder().hour(hour)
+                .mints(min)
+                .secs(sec)
+                .build();
+    }
+
+    /**
+     * 计算两个时间差
+     */
+    public static String getDatePoor(Date endDate, Date nowDate)
+    {
+        long nd = 1000 * 24 * 60 * 60;
+        long nh = 1000 * 60 * 60;
+        long nm = 1000 * 60;
+         long ns = 1000;
+        // 获得两个时间的毫秒时间差异
+        long diff = endDate.getTime() - nowDate.getTime();
+        // 计算差多少天
+        long day = diff / nd;
+        // 计算差多少小时
+        long hour = diff % nd / nh;
+        // 计算差多少分钟
+        long min = diff % nd % nh / nm;
+        // 计算差多少秒//输出结果
+        long sec = diff % nd % nh % nm / ns;
         return day + "天" + hour + "小时" + min + "分钟";
     }
+
+
+    /**
+     * date 转换成 localDate
+     * @param date
+     * @return
+     */
+    public static LocalDateTime dateToLocalDateTime(Date date){
+        Instant instant = date.toInstant();
+        ZoneId zoneId = ZoneId.systemDefault();
+        LocalDateTime localDateTime = instant.atZone(zoneId).toLocalDateTime();
+        return localDateTime;
+    }
+
+
+
 
     /**
      * 获取 一天 开始时间
